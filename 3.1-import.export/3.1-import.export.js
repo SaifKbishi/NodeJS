@@ -25,23 +25,11 @@ console.log(Buffer);
 
 //3.3 __filename and __dirname
 
-
 const {add, sub, multi, div} = require('./externalFile.js'); // from same folder
 console.log(add(2,3));
 console.log(sub(2,3));
 console.log(multi(2,3));
 console.log(div(6,3));
-
-
-
-
-
-
-
-
-
-
-
 
 
 

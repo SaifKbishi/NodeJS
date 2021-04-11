@@ -45,11 +45,10 @@ yargs.command({
   },
  },
  handler: function(argv){
-  // console.log('calcing something', argv.add)
   if(argv.add) console.log('adding here', argv.add[0] + argv.add[1])
   else if(argv.sub) console.log('subbing here', argv.sub[0] - argv.sub[1])
-  else if(argv.mult) console.log('subbing here', argv.mult[0] * argv.mult[1])
-  else if(argv.pow) console.log('subbing here', argv.pow[0] * argv.pow[0])
+  else if(argv.mult) console.log('multiplaying here', argv.mult[0] * argv.mult[1])
+  else if(argv.pow) console.log('powering here', argv.pow[0] * argv.pow[0])
  }
 });
 
