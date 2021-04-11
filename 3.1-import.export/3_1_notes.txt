@@ -1,0 +1,7 @@
+fs commands 
+
+fs.copyFileSync('notes.text', 'destination.txt'); 
+ fs.renameSync('notes.text', 'notes2.txt'); 
+const folder = './'; 
+fs.readdirSync(folder).forEach(file => { console.log(file);});
+fs.appendFileSync('notes.text','this is the appeend');

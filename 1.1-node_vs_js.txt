@@ -1,0 +1,7 @@
+1. can CRUD files on the server - FS
+2. require() 
+3. OS module
+
+1. can interacte with the DOM
+2. document
+3. window
