@@ -1,26 +1,19 @@
 const express = require('express');
-const nodemon = require('nodemon');
+const request = require('request');
+const hbs = require('hbs');
 
 const app = express();
+const url = 'http://gateway.marvel.com/v1/public/characters?ts=20210412&apikey=92f3931c476aa93ed57f8f64afc7ca79&hash=99c638818e5c5eabb8b70c3150c66fe1';
 
-app.get('', (req, res) => {
-    res.send('<h1>Hello Weather</h1>');
-})
+app.get('/', function(req, res) {
+    request(url, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        res.send(body);
+      }
+    });
+  });
 
-app.get('/helpJSON', (req, res) => {
-    res.send([{name: 'saif', age: 55},{name: 'saif2', age: 5}]);
-})
 
-app.get('/about', (req, res) => {
-    res.send('<h1>About</h1>');
-})
-
-app.get('/weather', (req, res) => {
-    res.send('Your weather');
-})
-app.get('/myweather', (req, res) => {
- res.send('my weather');
-})
 
 app.listen(3000, () => {
     console.log('Server is up on port 3000.');
