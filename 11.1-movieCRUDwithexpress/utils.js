@@ -61,9 +61,18 @@ const findOneRecord = (argv)=>{
 }//findOneRecord
 
 //update one record
-const updateOneRecord = ()=>{
- console.log('try to UPDATE one record');
-
+const updateOneRecord = (id, title, rating)=>{
+ console.log('try to UPDATE one record', id, title, rating);
+ const movies = retrieveAll();
+ const findMovie = movies.find((movie)=>{
+  return movie.id == id;
+ });
+ if(findMovie){//movie found
+  findMovie.title = title;
+  saveRecords(movies);
+ }else{
+  console.log(`movie with tilte ${title} could not be found`)
+ }
 }//updateOneRecord
 
 //delete one record

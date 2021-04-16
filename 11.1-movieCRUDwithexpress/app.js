@@ -42,9 +42,12 @@ app.post(`/api/${entity}s`, (req, res)=>{
 });
 
 //update one
-app.patch(`/api/${entity}s/:title`, (req, res)=>{
- const {title} = req.params;
- const updateRecord = updateOneRecord(title);
+app.put(`/api/${entity}s/:id`, (req, res)=>{
+ console.log('req.params', req.body)
+ const {id } = req.params;
+ const {title, rating} = req.body;
+ console.log('to send',id, title)
+ const updateRecord = updateOneRecord(id, title,rating);
  res.status(200).send(updateRecord);
 });
 
