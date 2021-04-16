@@ -9,7 +9,7 @@ const entity = 'movie'
  * this app will demo a Movies API CRUD
  */
 
-//get all
+//retrieve All records
 app.get(`/api/${entity}s`, (req, res)=>{
  const allRecords = retrieveAll();
  res.status(200).send(allRecords);
@@ -41,21 +41,21 @@ app.post(`/api/${entity}s`, (req, res)=>{
  }
 });
 
-
 //update one
-app.patch(`/api/${entity}s/:id`, (req, res)=>{
- const updateRecord = updateOneRecord();
+app.patch(`/api/${entity}s/:title`, (req, res)=>{
+ const {title} = req.params;
+ const updateRecord = updateOneRecord(title);
  res.status(200).send(updateRecord);
 });
 
 //delete one
-app.delete(`/api/${entity}s/:id`, (req, res)=>{
- const deleteRecord = deleteOneRecord();
+app.delete(`/api/${entity}s/:title`, (req, res)=>{
+ const {title} = req.params;
+ const deleteRecord = deleteOneRecord(title);
  res.status(200).send(deleteRecord);
 });
 
-
-app.listen(PORT, ()=>console.log(`server listening to port ${PORT}`))
+app.listen(PORT, ()=>console.log(`server listening to port ${PORT}`));
 
 
 

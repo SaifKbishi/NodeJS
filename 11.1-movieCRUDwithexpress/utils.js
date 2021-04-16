@@ -52,8 +52,8 @@ const findOneRecord = (argv)=>{
    
    const dataBuffer = fs.readFileSync(`${DB}`);
    const dataJSON = dataBuffer.toString();
-   const objRecord = JSON.parse(dataJSON);
-   return objRecord.find((movie)=>{return movie.title == argv;});   
+   const recordObj = JSON.parse(dataJSON);
+   return recordObj.find((movie)=>{return movie.title == argv;});   
   }else{
    //console.log(`movie with ID: ${argv.id} could NOT be found`);
    console.log(`movie with ID: ${argv.title} could NOT be found`);
@@ -67,9 +67,20 @@ const updateOneRecord = ()=>{
 }//updateOneRecord
 
 //delete one record
-const deleteOneRecord = ()=>{
+const deleteOneRecord = (argv)=>{
  console.log('try to DELETE one record');
-
+ const movies = retrieveAll();
+ const findMovie = movies.find((movie)=>{
+  return movie.title == argv
+ });
+ if(findMovie){//movie found
+  const moviesToKeep = movies.filter((movie)=>{
+   return movie.title !== argv;
+  });
+  saveRecords(moviesToKeep);
+ }else{
+  console.log(`movie with tilte ${argv.title} could not be found`)
+ }
 }
 const saveRecords = (movies) =>{
  const dataJSON = JSON.stringify(movies);
