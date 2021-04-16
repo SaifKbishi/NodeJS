@@ -3,7 +3,7 @@ const app = express();
 const PORT = 3001;
 const {retrieveAll, addNew, findOneRecord, updateOneRecord, deleteOneRecord } = require("./utils");
 app.use(express.json());//now express can understand JSON 
-const entity = 'movie'
+const entity = 'movie';
 
 /**
  * this app will demo a Movies API CRUD

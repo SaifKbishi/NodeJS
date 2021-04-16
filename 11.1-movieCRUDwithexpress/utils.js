@@ -60,6 +60,7 @@ const findOneRecord = (argv)=>{
   }
 }//findOneRecord
 
+
 //update one record
 const updateOneRecord = (id, title, rating)=>{
  console.log('try to UPDATE one record', id, title, rating);
@@ -69,6 +70,7 @@ const updateOneRecord = (id, title, rating)=>{
  });
  if(findMovie){//movie found
   findMovie.title = title;
+  findMovie.rating = rating;
   saveRecords(movies);
  }else{
   console.log(`movie with tilte ${title} could not be found`)

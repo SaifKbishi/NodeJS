@@ -2,10 +2,11 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./11.1-movieCRUDwithexpress/app.js",
+  "start": "/nodemon app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "/NodeJS/NodeJSwork/express_crud/nodemon app2.js"
+    "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
