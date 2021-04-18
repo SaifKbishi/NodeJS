@@ -64,6 +64,7 @@ app.listen(PORT, ()=>console.log(`server listening to port ${PORT}`));
 
 
 /**
+ * http://127.0.0.1:3001/api/movies/
  * {
     "id": "{{$guid}}",
     "title": "F9" ,
@@ -71,4 +72,21 @@ app.listen(PORT, ()=>console.log(`server listening to port ${PORT}`));
     "genre": ["Action", "Adventure", "Crime", "Thriller"],
     "length":"95"
 }
+{
+ "id":"{{$guid}}",
+ "title":"F93",
+ "rating":5,
+ "genre":"Action",
+ "length":80
+}
+{
+ "id":"{{$guid}}",
+ "title":"Building the World",
+ "rating":4,
+ "genre":"Fantasy",
+ "length":78
+}
  */
+
+
+
