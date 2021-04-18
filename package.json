@@ -13,7 +13,9 @@
   "dependencies": {
     "axios": "^0.21.1",
     "chalk": "^4.1.0",
+    "create-react-app": "^4.0.3",
     "express": "^4.17.1",
+    "frontend": "^2.0.0-alpha.4",
     "hbs": "^4.1.1",
     "nodemon": "^2.0.7",
     "request": "^2.88.2",
