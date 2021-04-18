@@ -2,17 +2,20 @@
   "name": "nodejs",
   "version": "1.0.0",
   "description": "",
-  "main": "./11.1-movieCRUDwithexpress/app.js",
+  "main": "./11.1-express_with_react/app.js",
   "start": "/nodemon app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "heroku-postbuild": "cd 11.1-express_with_react/frontend && npm install && npm run build"
+
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
     "chalk": "^4.1.0",
+    "corss": "^2.8.5",
     "create-react-app": "^4.0.3",
     "express": "^4.17.1",
     "frontend": "^2.0.0-alpha.4",

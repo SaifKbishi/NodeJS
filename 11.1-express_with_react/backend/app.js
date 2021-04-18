@@ -1,13 +1,17 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
+app.use(cors());
 const PORT = 3001;
 const {retrieveAll, addNew, findOneRecord, updateOneRecord, deleteOneRecord } = require("./utils");
 app.use(express.json());//now express can understand JSON 
-const entity = 'movie';
+//this is the uri to statuc data
+if (process.env.NODE_ENV === 'production') {
+   app.use(express.static(path.join(__dirname, '../frontend/build')));
+ } else {
+   app.use(express.static(path.join(__dirname, '../frontend/public')));
+ }
 
-/**
- * this app will demo a Movies API CRUD
- */
 
  app.get(`/api/movies/hello`, (req, res)=>{    
     res.status(200).send("hello world from backend app.js");
