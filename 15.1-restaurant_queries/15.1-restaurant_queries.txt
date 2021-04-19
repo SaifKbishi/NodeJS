@@ -1,0 +1,211 @@
+cd C:\Program Files\MongoDB\Server\4.4\bin
+mongo.exe
+
+cd C:\Program Files\MongoDB\Server\4.4\bin
+
+
+1. use findMyRestaurant
+2. db.restaurants.insertMany([
+  {
+    name: "bombay",
+    address: {
+      city: "Holon",
+      street: "Herzel 15",
+      coordinates: [-77.46574, 40.6774],
+    },
+    cuisine: "indian",
+    kosher: true,
+    reviews: [
+      {
+        date: new Date("2016-01-01"),
+        score: 7,
+      },
+      {
+        date: new Date("2019-01-01"),
+        score: 3,
+      },
+      {
+        date: new Date("2018-01-01"),
+        score: 8,
+      },
+    ],
+  },
+  {
+    name: "falafel 5 shekels",
+    address: {
+      city: "Bat-Yam",
+      street: "Histradrut 85",
+      coordinates: [-70.46574, 10.6774],
+    },
+    cuisine: "street food",
+    kosher: false,
+    reviews: [
+      {
+        date: new Date("2019-01-01"),
+        score: 3,
+      },
+      {
+        date: new Date("2016-01-01"),
+        score: 8,
+      },
+      {
+        date: new Date("2020-01-01"),
+        score: 4,
+      },
+    ],
+  },
+  {
+    name: "asian delight",
+    address: {
+      city: "Tel Aviv",
+      street: "Balfur 15",
+      coordinates: [-10.46574, 30.6774],
+    },
+    cuisine: "asian",
+    kosher: true,
+    reviews: [
+      {
+        date: new Date("2020-01-01"),
+        score: 3,
+      },
+      {
+        date: new Date("2018-01-01"),
+        score: 8,
+      },
+      {
+        date: new Date("2016-01-01"),
+        score: 9,
+      },
+    ],
+  },
+  {
+    name: "coconut jam",
+    address: {
+      city: "Tel Aviv",
+      street: "Stam Adress 15",
+      coordinates: [20.46574, -40.6774],
+    },
+    cuisine: "african",
+    kosher: true,
+    reviews: [
+      {
+        date: new Date("2017-01-01"),
+        score: 10,
+      },
+      {
+        date: new Date("2016-01-01"),
+        score: 8,
+      },
+      {
+        date: new Date("2019-01-01"),
+        score: 6,
+      },
+    ],
+  },
+  {
+    name: "rice and noodles",
+    address: {
+      city: "Holon",
+      street: "Bla Bla 15",
+      coordinates: [20.46574, 10.6774],
+    },
+    cuisine: "asian",
+    kosher: false,
+    reviews: [
+      {
+        date: new Date("2016-01-01"),
+        score: 1,
+      },
+      {
+        date: new Date("2019-01-01"),
+        score: 6,
+      },
+      {
+        date: new Date("2019-01-01"),
+        score: 2,
+      },
+    ],
+  },
+  {
+    name: "thailand paradise",
+    address: {
+      city: "Holon",
+      street: "Bla 13",
+      coordinates: [-77.46574, 40.6774],
+    },
+    cuisine: "asian",
+    kosher: false,
+    reviews: [
+      {
+        date: new Date("2020-01-01"),
+        score: 7,
+      },
+      {
+        date: new Date("2019-01-01"),
+        score: 6,
+      },
+      {
+        date: new Date("2020-01-01"),
+        score: 2,
+      },
+    ],
+  },
+])
+
+CRUD
+1.1 db.restaurants.find().pretty()
+1.2 db.restaurants.find({cuisine: "asian"}).pretty()
+1.2 db.restaurants.find({cuisine: "african"},{name:1,true:1,_id:0}).pretty()
+1.3 db.restaurants.find({kosher: true},{name:1,true:1,_id:0}).pretty()
+
+1.4 db.restaurants.find({"address.city": "Holon"},{name:1,true:1,_id:0}).pretty()
+
+//Holon resturants addresses
+1.5a db.restaurants.find({"address.city": "Holon"},{address:1,true:1,_id:0}).pretty()
+
+1.5 db.restaurants.find({name: "rice and noodles"},{address:1,true:1,_id:0}).pretty()
+
+1.6 db.restaurants.find({name: "rice and noodles"},{"address.coordinates":1,true:1,_id:0}).pretty()
+
+1.7 db.restaurants.aggregate({$sort:{name: 1}}).pretty()
+
+1.8 db.restaurants.aggregate({$sort:{"address.city": 1}}).pretty()
+1.8 db.restaurants.aggregate({$sort:{"address.city": 1}},{name:1,_id:0}).pretty()
+
+1.9 db.restaurants.updateOne({_id:ObjectId("607d4c2846202730d7e40dea")}, {$set:{name:"Bora Bora"}})
+1.10 db.restaurants.update({name: "rice and noodles"}, {"$push":{"reviews":{"date": new Date("2020-04-19"),"score": 9.5,}}})
+
+1.11 db.restaurants.updateMany({kosher: false},{$set:{kosher: true}})
+
+1.12 db.restaurants.deleteOne({_id:ObjectId("607d76ab39f7b754728d3cc5")})
+db.restaurants.deleteOne({_id:ObjectId("607d779539f7b754728d3cc6")})
+
+1.13 db.restaurants.deleteMany({name:{$exists:true}})
+Update All Documents in an Array
+1.14 db.restaurants.update({name: "rice and noodles"},	{$inc:{"reviews.$[].score": 1}})
+1.15 db.restaurants.update({name: "rice and noodles"},	{$inc:{"reviews.$[].score": -1}})
+
+2.1 db.restaurants.find().forEach(function(myRest){print("name: "+ myRest.name);});
+2.1 db.restaurants.find().forEach((myRest)=>{print("name: "+ myRest.name);});
+
+2.2 db.restaurants.find().forEach((myRestCity)=>{print("City: "+ myRestCity.address.city);});
+2.3 db.restaurants.find().forEach((myRestCoordinates)=>{print("coordinates: "+ myRestCoordinates.address.coordinates);});
+
+3.1 db.restaurants.find({name: {$regex: /^t/}})
+db.restaurants.find({name: {$regex: /^t/}},{name:1,true:1,_id:0})
+3.2 db.restaurants.count(); 
+3.3 db.restaurants.find({"reviews.date": ISODate("2019-01-01")}, {name:1,true:1,_id:0}).pretty()
+
+----------------------------------------
+cd C:\Program Files\MongoDB\Server\4.4\bin
+mongo.exe
+cd C:\Program Files\MongoDB\Server\4.4\bin
+mongo "mongodb+srv://cluster0.y3jty.mongodb.net/ Cluster0" --username firstUser
+FG12XZ123
+
+mongo.exe mongo "mongodb+srv://cluster0.y3jty.mongodb.net/Cluster0" --username firstUser
+
+mongo.exe mongo "mongodb+srv://findMyRestaurant.y3jty.mongodb.net/findMyRestaurant" --username firstUser
+
+
+1. use findMyRestaurant
