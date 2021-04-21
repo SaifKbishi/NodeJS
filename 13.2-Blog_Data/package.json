@@ -1,0 +1,12 @@
+{
+  "name": "13.2-Blog_Data",
+  "version": "1.0.0",
+  "description": "cd 13.2-Blog_Data\r new treminal\r npm init -y",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

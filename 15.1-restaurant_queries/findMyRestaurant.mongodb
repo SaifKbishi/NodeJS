@@ -1,0 +1,11 @@
+// MongoDB Playground
+// To disable this template go to Settings | MongoDB | Use Default Template For Playground.
+// Make sure you are connected to enable completions and to be able to run a playground.
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+// Select the database to use.
+use('findMyRestaurant');
+db.restaurants.find({name: {$regex: /^t/}})
+db.restaurants.aggregate({$sort:{"address.city": 1}}).pretty()
+db.restaurants.find({"address.city": "Holon"},{address:1,true:1,_id:0}).pretty() 
+

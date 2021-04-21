@@ -196,16 +196,25 @@ db.restaurants.find({name: {$regex: /^t/}},{name:1,true:1,_id:0})
 3.2 db.restaurants.count(); 
 3.3 db.restaurants.find({"reviews.date": ISODate("2019-01-01")}, {name:1,true:1,_id:0}).pretty()
 
-----------------------------------------
-cd C:\Program Files\MongoDB\Server\4.4\bin
-mongo.exe
-cd C:\Program Files\MongoDB\Server\4.4\bin
-mongo "mongodb+srv://cluster0.y3jty.mongodb.net/ Cluster0" --username firstUser
-FG12XZ123
-
-mongo.exe mongo "mongodb+srv://cluster0.y3jty.mongodb.net/Cluster0" --username firstUser
-
-mongo.exe mongo "mongodb+srv://findMyRestaurant.y3jty.mongodb.net/findMyRestaurant" --username firstUser
 
 
-1. use findMyRestaurant
+NOT solved yet
+4.1 db.restaurants.aggregate([{$avg:"reviews.$[].score"}])
+4.2 db.restaurants.aggregate([{$group:{_id:"$name",avgScore:{$avg:"$reviews.$[].score"}}}])
+from Pini:
+*4.1- Write a mongoDb query to all restaurants average score
+db.restaurants.aggregate([
+    {$unwind:"$reviews"},
+    {$group: {_id:"$name",avg:{$avg:"$reviews.score"}}}
+])
+​
+* 4.2- Write a mongoDb query to display a specific restaurants average score
+db.restaurants.aggregate([
+    {$match:{_id:ObjectId("5ffab76433ab673d82bbb2cc")}},
+    {$unwind:"$reviews"},
+    {$group: {_id:"$name",avg:{$avg:"$reviews.score"}}}
+])
+​
+
+use findMyRestaurant
+
