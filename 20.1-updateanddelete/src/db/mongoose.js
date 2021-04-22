@@ -7,8 +7,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/Ecommerce',{
  useUnifiedTopology: true, 
 });
 
-
-
 // const InsigniaTV32 = new Product({
 //  name: 'Insignia 32" 720p HD LED TV',
 //  category: 'TV',
